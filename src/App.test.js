@@ -10,22 +10,20 @@ import App from "./App";
  **************************************************************************************************/
 
 describe("when rendering the App component", () => {
-  test("diamond changer clicked the first time should change the diamond pink", () => {
+  test("diamond spinner clicked the first time should spin diamond to the right", () => {
     const container = render(<App />);
-    const textElement = container.getByText("diamond changer");
+    const textElement = container.getByText("diamond spinner");
     fireEvent.click(textElement);
     const diamond = container.getByTestId("diamond");
-    expect(diamond.style.backgroundColor).toEqual("pink");
+    expect(diamond.className).toEqual("rotate-right");
   });
-  test("diamond changer clicked the second time should change the diamond back to hex color code #b9f2ff or rgb(185, 242, 255)", () => {
+  test("diamond spinner clicked the second time should spin diamond to the left", () => {
     const container = render(<App />);
-    const textElement = container.getByText("diamond changer");
+    const textElement = container.getByText("diamond spinner");
     fireEvent.click(textElement);
     fireEvent.click(textElement);
     const diamond = container.getByTestId("diamond");
-    expect(diamond.style.backgroundColor).toEqual(
-      "rgb(185, 242, 255)" || "#b9f2ff"
-    );
+    expect(diamond.className).toEqual("rotate-left");
   });
 });
 
